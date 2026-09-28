@@ -1,0 +1,190 @@
+{
+  "n_gram": 13,
+  "n_test_records": 302,
+  "per_domain": {
+    "adversarial_ood": {
+      "input": 80,
+      "n": 13,
+      "output": 80,
+      "removed": 0,
+      "removed_pct": 0.0,
+      "sample": [],
+      "wall_seconds": 0.02
+    },
+    "math": {
+      "input": 1800,
+      "n": 13,
+      "output": 1800,
+      "removed": 0,
+      "removed_pct": 0.0,
+      "sample": [],
+      "wall_seconds": 0.42
+    },
+    "ood": {
+      "input": 320,
+      "n": 13,
+      "output": 320,
+      "removed": 0,
+      "removed_pct": 0.0,
+      "sample": [],
+      "wall_seconds": 0.05
+    },
+    "physics": {
+      "input": 1799,
+      "n": 13,
+      "output": 1735,
+      "removed": 64,
+      "removed_pct": 3.558,
+      "sample": [
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00890",
+          "matched_ngram": "the following lasers utilizes transitions that involve the energy levels of free atoms?",
+          "matched_test_id": "mmlu-phys-0086",
+          "prompt_preview": "Which of the following lasers utilizes transitions that involve the energy levels of free atoms?\n\nA) Dye laser\nB) Free-electron laser\nC) Diode laser\nD) Gas lase"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00378",
+          "matched_ngram": "it takes twice as much work to stretch a second spring by half",
+          "matched_test_id": "mmlu-phys-0078",
+          "prompt_preview": "A spring of force constant k is stretched a certain distance. It takes twice as much work to stretch a second spring by half this distance. The force constant o"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00085",
+          "matched_ngram": "box in the direction of its motion. the box travels 5 m with",
+          "matched_test_id": "mmlu-phys-0076",
+          "prompt_preview": "A 10 kg box slides horizontally without friction at a speed of 1 m/s. At one point, a constant force is applied to the box in the direction of its motion. The b"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00013",
+          "matched_ngram": "structure of elemental carbon, the nearest neighbors of each c atom lie at",
+          "matched_test_id": "mmlu-phys-0010",
+          "prompt_preview": "In the diamond structure of elemental carbon, the nearest neighbors of each C atom lie at the corners of a\n\nA) cube\nB) octagon\nC) square\nD) tetrahedron\n\nAnswer "
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00177",
+          "matched_ngram": "m/s diffract out of a speaker enclosure with an opening that is a",
+          "matched_test_id": "mmlu-phys-0088",
+          "prompt_preview": "Sound waves moving at 350 m/s diffract out of a speaker enclosure with an opening that is a long rectangular slit 0.14 m across. At about what frequency will th"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00003",
+          "matched_ngram": "in the spectrum of the quasar 3c9 are shifted so far into the",
+          "matched_test_id": "mmlu-phys-0071",
+          "prompt_preview": "The hydrogen lines observed in the spectrum of the quasar 3C9 are shifted so far into the red that their wavelengths are three times as long as those observed i"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00554",
+          "matched_ngram": "close to 6,000 k and it emits a blackbody (planck) spectrum that reaches",
+          "matched_test_id": "mmlu-phys-0080",
+          "prompt_preview": "The surface of the Sun has a temperature close to 6,000 K and it emits a blackbody (Planck) spectrum that reaches a maximum near 500 nm. For a body with a surfa"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00834",
+          "matched_ngram": "it is similar to the hydrogen atom, with the positron replacing the proton.",
+          "matched_test_id": "mmlu-phys-0100",
+          "prompt_preview": "Positronium is an atom formed by an electron and a positron (antielectron). It is similar to the hydrogen atom, with the positron replacing the proton. If a pos"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00363",
+          "matched_ngram": "series with a 6-microfarad capacitor. when a 300-volt potential difference is applied across",
+          "matched_test_id": "mmlu-phys-0092",
+          "prompt_preview": "A 3-microfarad capacitor is connected in series with a 6-microfarad capacitor. When a 300-volt potential difference is applied across this combination, the tota"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00116",
+          "matched_ngram": "measure the speed of the ball just before it strikes the ground. from",
+          "matched_test_id": "mmlu-phys-0055",
+          "prompt_preview": "Two students perform an experiment in which they drop a ball from rest from a known height above the ground and measure the speed of the ball just before it str"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-01059",
+          "matched_ngram": "a pair of very narrow slits separated by 0.5 micrometer, and bright fringes",
+          "matched_test_id": "mmlu-phys-0022",
+          "prompt_preview": "Light from a laser falls on a pair of very narrow slits separated by 0.5 micrometer, and bright fringes separated by 1.0 millimeter are observed on a distant sc"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00695",
+          "matched_ngram": "and n = 2 levels. how many electrons does the atom have? a)",
+          "matched_test_id": "mmlu-phys-0021",
+          "prompt_preview": "An atom has filled n = 1 and n = 2 levels. How many electrons does the atom have?\n\nA) 20\nB) 4\nC) 6\nD) 10\n\nAnswer with the letter only."
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-01183",
+          "matched_ngram": "battery. the other two capacitors, initially uncharged and connected in series, are then",
+          "matched_test_id": "mmlu-phys-0006",
+          "prompt_preview": "Consider three identical, ideal capacitors. The first capacitor is charged to a voltage and then disconnected from the battery. The other two capacitors, initia"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00457",
+          "matched_ngram": "the turntable at which the coin will not slide? a) 0.024 m b)",
+          "matched_test_id": "mmlu-phys-0011",
+          "prompt_preview": "The coefficient of static friction between a small coin and the surface of a turntable is 0.30. The turntable rotates at 33.3 revolutions per minute. What is th"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00605",
+          "matched_ngram": "the +z-direction after being accelerated from rest through a potential difference v. the",
+          "matched_test_id": "mmlu-phys-0028",
+          "prompt_preview": "A proton moves in the +z-direction after being accelerated from rest through a potential difference V. The proton then passes through a region with a uniform el"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00265",
+          "matched_ngram": "the negative muon, mu^-, has properties most similar to which of the following?",
+          "matched_test_id": "mmlu-phys-0037",
+          "prompt_preview": "The negative muon, mu^-, has properties most similar to which of the following?\n\nA) Meson\nB) Gluon\nC) Electron\nD) Proton\n\nAnswer with the letter only."
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00633",
+          "matched_ngram": "and a scattering pattern of the beam can be obtained. what is the",
+          "matched_test_id": "mmlu-phys-0093",
+          "prompt_preview": "Under certain conditions, a beam of electrons impinging on a crystal surface will diffract and a scattering pattern of the beam can be obtained. What is the app"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00336",
+          "matched_ngram": "melted in a fixed amount of time is increased by a factor of",
+          "matched_test_id": "mmlu-phys-0039",
+          "prompt_preview": "The energy from electromagnetic waves in equilibrium in a cavity is used to melt ice. If the Kelvin temperature of the cavity is increased by a factor of two, t"
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00617",
+          "matched_ngram": "a rate of 1 w. if the voltage across the resistor is doubled,",
+          "matched_test_id": "mmlu-phys-0040",
+          "prompt_preview": "A resistor in a circuit dissipates energy at a rate of 1 W. If the voltage across the resistor is doubled, what will be the new rate of energy dissipation?\n\nA) "
+        },
+        {
+          "domain": "physics",
+          "id": "mmlupro-phys-tes-00496",
+          "matched_ngram": "one end and open at the other, is designed to have a fundamental",
+          "matched_test_id": "mmlu-phys-0062",
+          "prompt_preview": "An organ pipe, closed at one end and open at the other, is designed to have a fundamental frequency of C (131 Hz). What is the frequency of the next higher harm"
+        }
+      ],
+      "wall_seconds": 0.44
+    }
+  },
+  "totals": {
+    "input": 3999,
+    "output": 3935,
+    "removed": 64,
+    "removed_pct": 1.6,
+    "wall_seconds": 1.01
+  }
+}
