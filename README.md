@@ -376,7 +376,7 @@ Status legend: `[todo]` not started · `[wip]` in progress · `[done]` accepted.
 - [x] Multi-stage `Dockerfile` (builder + runtime, non-root)
 - [x] `Makefile` with `setup`, `lint`, `test`, `eval-baseline`
 - [x] `.gitignore`, `LICENSE` (MIT), `.env.example`, `CHANGELOG.md`, `README.md`
-- [ ] **Exit criteria:** `make setup` runs on a clean machine; `make eval-baseline` reproduces committed baseline scores ± tolerance
+- [x] **Exit criteria:** `make setup` runs on a clean machine; `make eval-baseline` reproduces committed baseline scores ± tolerance
 
 ### M1 — Data pipeline [todo]
 
