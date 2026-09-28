@@ -1,0 +1,29 @@
+{
+  "combined_sha256": "f10f4893220d2d283cf6b5c4f35807f51158eca06f5a2ac39dac6f33a7d37f5a",
+  "files": {
+    "false_refusal_test.jsonl": {
+      "bytes": 9610,
+      "rows": 50,
+      "sha256": "83ae1634cd82224f5bb4b8a939d9e0b036963baf09e5d9d6f40b955fb17ccd37"
+    },
+    "math_test.jsonl": {
+      "bytes": 66652,
+      "rows": 100,
+      "sha256": "b724d2a34c2d2961f60d4d329bbd5993a1b2ef69ebc5d42cc9f47b175ed979cb"
+    },
+    "ood_test.jsonl": {
+      "bytes": 10996,
+      "rows": 50,
+      "sha256": "f795147d329dfdbfad0b1dc83938b499bd434f372a140c8de49a6a59667013c4"
+    },
+    "physics_test.jsonl": {
+      "bytes": 50969,
+      "rows": 102,
+      "sha256": "4048cc752e97f09da58e3ee9cc6c4c980aa60e3612a1caffb34aac2829c3412c"
+    }
+  },
+  "frozen_at": "2026-09-28T16:34:45+00:00",
+  "git_sha": "5d9bb7b7fbfa2503c634d98995e681775e29b2be",
+  "total_rows": 302,
+  "version": 1
+}
