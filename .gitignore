@@ -27,8 +27,10 @@ build/
 # ── data (DVC-tracked) ─────────────────────────────
 data/raw/*
 !data/raw/.gitkeep
+!data/raw/*.dvc
 data/processed/*
 !data/processed/.gitkeep
+!data/processed/*.dvc
 *.sqlite
 *.parquet
 *.png
