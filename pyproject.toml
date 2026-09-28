@@ -176,6 +176,10 @@ exclude = ["build/", "dist/", "notebooks/", "src/llm_ft/secrets\\.py"]
 
 [[tool.mypy.overrides]]
 module = [
+    "pandas",
+    "pandera",
+    "pandera.pandas",
+    "pandera.typing",
     "bitsandbytes.*",
     "peft.*",
     "trl.*",
