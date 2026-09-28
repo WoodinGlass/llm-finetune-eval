@@ -104,6 +104,15 @@ info:  ## print platform / paths (JSON)
 version:  ## print package version
 	@$(PY) -m llm_ft version
 
+# ── data freeze / verify ────────────────────────────────────────
+.PHONY: freeze-test-set
+freeze-test-set:  ## freeze data/raw/* -> data/processed/test/ + lock
+	$(PY) -m llm_ft.freeze freeze
+
+.PHONY: verify-test-set
+verify-test-set:  ## verify data/processed/test/ against test.lock
+	$(PY) -m llm_ft.freeze verify
+
 # ── docker ──────────────────────────────────────────────────────
 .PHONY: docker-build
 docker-build:  ## build the multi-stage image
