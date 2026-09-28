@@ -1,0 +1,62 @@
+{
+  "domains": {
+    "adversarial_ood": {
+      "dedup_pct": 0.0,
+      "dedup_removed": 0,
+      "input": 80,
+      "ner_available": true,
+      "output": 80,
+      "pii_counts": {
+        "ner_date_time": 1,
+        "ner_location": 2,
+        "ner_nrp": 2,
+        "ner_person": 4
+      },
+      "pii_records_changed": 9,
+      "wall_seconds": 1.8
+    },
+    "math": {
+      "dedup_pct": 0.0,
+      "dedup_removed": 0,
+      "input": 1800,
+      "ner_available": false,
+      "output": 1800,
+      "pii_counts": {
+        "phone_intl": 2
+      },
+      "pii_records_changed": 1,
+      "wall_seconds": 1.8
+    },
+    "ood": {
+      "dedup_pct": 0.0,
+      "dedup_removed": 0,
+      "input": 320,
+      "ner_available": true,
+      "output": 320,
+      "pii_counts": {
+        "ner_date_time": 12,
+        "ner_location": 15,
+        "ner_nrp": 2,
+        "ner_person": 16
+      },
+      "pii_records_changed": 43,
+      "wall_seconds": 10.5
+    },
+    "physics": {
+      "dedup_pct": 0.056,
+      "dedup_removed": 1,
+      "input": 1800,
+      "ner_available": false,
+      "output": 1799,
+      "pii_counts": {},
+      "pii_records_changed": 0,
+      "wall_seconds": 2.1
+    }
+  },
+  "totals": {
+    "input": 4000,
+    "output": 3999,
+    "removed": 1,
+    "wall_seconds": 16.3
+  }
+}
