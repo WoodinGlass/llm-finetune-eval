@@ -353,7 +353,7 @@ See `docs/cost.md` for the current numbers.
 
 - [`SETUP.md`](SETUP.md) — one-command reproduction
 - [`docs/slo.md`](docs/slo.md) — service level objectives
-- [`docs/adr/`](docs/adr/) — Architecture Decision Records
+- [`docs/adr/`](docs/adr/) — Architecture Decision Records (0001–0004 accepted)
 - [`docs/runbook/`](docs/runbook/) — incident playbooks
 - [`docs/cards/model.md`](docs/cards/model.md) — model card
 - [`docs/cards/data.md`](docs/cards/data.md) — data card
@@ -367,15 +367,15 @@ See `docs/cost.md` for the current numbers.
 Each milestone ships **runnable, tested, and documented** code — not stubs.
 Status legend: `[todo]` not started · `[wip]` in progress · `[done]` accepted.
 
-### M0 — Scoping & baseline [todo]
+### M0 — Scoping & baseline [wip]
 
-- [ ] `docs/slo.md` with measurable targets (accuracy, hallucination, p95 latency, cost/1k, cost/1M)
-- [ ] Baseline = base model + few-shot prompt, scores committed to `docs/slo.md`
-- [ ] `uv` project setup, `pyproject.toml` single source of truth with self-contained extras
-- [ ] `pre-commit` hooks (ruff, ruff-format, mypy, end-of-file-fixer, detect-secrets)
-- [ ] Multi-stage `Dockerfile` (builder + runtime, non-root)
-- [ ] `Makefile` with `setup`, `lint`, `test`, `eval-baseline`
-- [ ] `.gitignore`, `LICENSE` (MIT), `.env.example`, `CHANGELOG.md`, `README.md`
+- [x] `docs/slo.md` with measurable targets (accuracy, hallucination, p95 latency, cost/1k, cost/1M)
+- [ ] Baseline = base model + few-shot prompt, scores committed to `docs/slo.md`  _(M0.5)_
+- [x] `uv` project setup, `pyproject.toml` single source of truth with self-contained extras
+- [x] `pre-commit` hooks (ruff, ruff-format, mypy, end-of-file-fixer, detect-secrets)
+- [x] Multi-stage `Dockerfile` (builder + runtime, non-root)
+- [x] `Makefile` with `setup`, `lint`, `test`, `eval-baseline`
+- [x] `.gitignore`, `LICENSE` (MIT), `.env.example`, `CHANGELOG.md`, `README.md`
 - [ ] **Exit criteria:** `make setup` runs on a clean machine; `make eval-baseline` reproduces committed baseline scores ± tolerance
 
 ### M1 — Data pipeline [todo]
