@@ -2,7 +2,7 @@
 
 > End-to-end LLM fine-tuning, evaluation, serving, and retraining loop — built to production standards.
 
-[![CI](https://github.com/<username>/llm-finetune-eval/actions/workflows/ci.yml/badge.svg)](https://github.com/<username>/llm-finetune-eval/actions/workflows/ci.yml)
+[![CI](https://github.com/WoodinGlass/llm-finetune-eval/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/WoodinGlass/llm-finetune-eval/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
