@@ -1,0 +1,20 @@
+{
+  "batch_size": 4,
+  "decoding": "greedy",
+  "generated_at": "2026-09-28T19:50:17+00:00",
+  "git_sha": "a0db5533ec9b1845266eb43d91e600d6eaae20f3",
+  "max_new_tokens": {
+    "adversarial_ood": 384,
+    "false_refusal_math": 384,
+    "false_refusal_physics": 384,
+    "physics": 1024
+  },
+  "model_id": "Qwen/Qwen2.5-Math-7B-Instruct",
+  "model_revision": "main",
+  "n_items": 302,
+  "notes": "merged run: math/ood/false_refusal from batch=4 warm run; physics re-run separately with reasoning prompt + max_new_tokens=1024",
+  "quantization": "4-bit nf4 double-quant, float16 compute",
+  "seed": 42,
+  "test_lock_sha256": "f10f4893220d2d283cf6b5c4f35807f51158eca06f5a2ac39dac6f33a7d37f5a",
+  "wall_seconds": 1904.3
+}

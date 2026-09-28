@@ -170,7 +170,9 @@ check_untyped_defs = true
 no_implicit_optional = true
 strict_equality = true
 show_error_codes = true
-exclude = ["build/", "dist/", "notebooks/"]
+# Platform-specific modules without stubs (google.colab, kaggle_secrets);
+# typing is done via try/except + explicit signatures.
+exclude = ["build/", "dist/", "notebooks/", "src/llm_ft/secrets\\.py"]
 
 [[tool.mypy.overrides]]
 module = [

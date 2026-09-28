@@ -43,6 +43,7 @@ repos:
     hooks:
       - id: mypy
         files: ^src/
+        exclude: ^src/llm_ft/secrets\.py$
         args: ["--config-file=pyproject.toml"]
         additional_dependencies:
           - types-requests
@@ -59,5 +60,6 @@ repos:
             \.secrets\.baseline$|
             \.env\.example$|
             uv\.lock$|
+            experiments/baseline/.*\.json$|
             .*/\.gitkeep$
           )$

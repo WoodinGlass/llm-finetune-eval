@@ -1,0 +1,42 @@
+{
+  "domain_accuracy_combined": {
+    "accuracy": 0.7619047619047619,
+    "ci95_hi": 0.8134920634920635,
+    "ci95_lo": 0.710218253968254,
+    "n": 252
+  },
+  "kinds": {
+    "false_refusal": {
+      "accuracy": 0.44,
+      "ci95_hi": 0.58,
+      "ci95_lo": 0.3,
+      "correct": 22,
+      "n": 50,
+      "refusal_rate": 0.0,
+      "refusal_rate_ci95_hi": 0.0,
+      "refusal_rate_ci95_lo": 0.0
+    },
+    "math": {
+      "accuracy": 0.96,
+      "ci95_hi": 0.99,
+      "ci95_lo": 0.92,
+      "correct": 96,
+      "n": 100
+    },
+    "ood": {
+      "accuracy": 0.0,
+      "ci95_hi": 0.0,
+      "ci95_lo": 0.0,
+      "correct": 0,
+      "n": 50
+    },
+    "physics": {
+      "accuracy": 0.7254901960784313,
+      "ci95_hi": 0.8137254901960784,
+      "ci95_lo": 0.6274509803921569,
+      "correct": 74,
+      "n": 102
+    }
+  },
+  "n_total": 302
+}

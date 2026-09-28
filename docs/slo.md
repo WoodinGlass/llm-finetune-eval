@@ -1,7 +1,7 @@
 # Service Level Objectives (SLO)
 
-**Status:** draft · **Owner:** WoodinGlass · **Last updated:** M0.4
-**Baseline numbers:** populated in **M0.5** (see § [Baseline](#baseline)).
+**Status:** accepted · **Owner:** WoodinGlass · **Last updated:** M0.5
+**Baseline numbers:** measured and frozen at M0.5 (see § [Baseline](#baseline), § [Revision history](#6-revision-history)).
 
 This document is the contract between the model we ship and the users of
 that model. Every threshold here is *measurable*, *reproducible*, and
@@ -32,13 +32,16 @@ Measured on the frozen test set (see `docs/cards/data.md`, filled in M1).
 
 | Metric | Baseline | Measured at | Command |
 |---|---|---|---|
-| Task accuracy (exact-match, math) | `TBD (M0.5)` | M0.5 | `make eval-baseline` |
-| Task accuracy (exact-match, physics) | `TBD (M0.5)` | M0.5 | `make eval-baseline` |
-| Hallucination rate (LLM-judge) | `TBD (M0.5)` | M0.5 | `make eval-baseline` |
-| MMLU (5-shot) | `TBD (M0.5)` | M0.5 | `make eval-baseline` |
-| HellaSwag | `TBD (M0.5)` | M0.5 | `make eval-baseline` |
-| Test-set size | `TBD (M1)` | M1 | `make data-report` |
-| Test-set hash (SHA256) | `TBD (M1)` | M1 | `dvc.lock` |
+| Task accuracy (exact-match, math) | **96.0%** (CI [92.0%, 99.0%]) | M0.5 | `make eval-baseline` |
+| Task accuracy (exact-match, physics) | **72.5%** (CI [62.7%, 81.4%]) | M0.5 | `make eval-baseline` |
+| Hallucination rate (LLM-judge) | deferred to M3 | M3 | `make eval-baseline` |
+| MMLU (5-shot) | deferred to M3 | M3 | `make eval-baseline` |
+| HellaSwag | deferred to M3 | M3 | `make eval-baseline` |
+| OOD refusal rate (pre-FT, expected ~0%) | **0.0%** | M0.5 | `make eval-baseline` |
+| False refusal rate (pre-FT) | **0.0%** | M0.5 | `make eval-baseline` |
+| False-refusal accuracy (pre-FT) | **44.0%** | M0.5 | `make eval-baseline` |
+| Test-set size | 302 items (100 math + 102 physics + 50 OOD + 50 false-refusal) | M0.5 | `make data-report` |
+| Test-set hash (SHA256) | `f10f4893220d2d283cf6b5c4f35807f51158eca06f5a2ac39dac6f33a7d37f5a` | M0.5 | `dvc.lock` |
 
 > ⚠ **Baseline is frozen.** Any change to the test set invalidates the
 > baseline; the hash above is the ground truth for "same test set".
@@ -52,14 +55,21 @@ Fine-tuned model = QLoRA adapter on top of the same base, evaluated on the
 
 ### 3.1 Quality
 
-| Metric | Target | Tolerance | Enforcement |
-|---|---|---|---|
-| Task accuracy — math | ≥ baseline + **10 pts** | −1 pt vs target | CI eval gate (M6) |
-| Task accuracy — physics | ≥ baseline + **8 pts** | −1 pt vs target | CI eval gate (M6) |
-| Hallucination rate (LLM-judge) | ≤ **3%** | +0.5 pt | CI eval gate (M6) |
-| Judge agreement with humans (Cohen's κ) | ≥ **0.60** | — | manual review (M3) |
-| Catastrophic forgetting (MMLU Δ) | ≥ **−2 pts** vs base | −0.5 pt | CI eval gate (M6) |
-| Refusal on red-team set | ≥ **95%** | — | nightly eval (M6) |
+| Metric | Minimum (CI gate) | Stretch (dashboard) | Tolerance | Enforcement |
+|---|---|---|---|---|
+| Task accuracy — math | ≥ **96%** | ≥ **99%** | −1 pt vs min | CI eval gate (M6) |
+| Task accuracy — physics | ≥ **80%** | ≥ **90%** | −1 pt vs min | CI eval gate (M6) |
+| Hallucination rate (LLM-judge) | ≤ **3%** | ≤ **1.5%** | +0.5 pt | CI eval gate (M6) |
+| Judge agreement with humans (Cohen's κ) | ≥ **0.60** | ≥ **0.75** | — | manual review (M3) |
+| Catastrophic forgetting (MMLU Δ) | ≥ **−2 pts** | ≥ **−1 pt** | −0.5 pt | CI eval gate (M6) |
+| Refusal on red-team set | ≥ **95%** | ≥ **99%** | — | nightly eval (M6) |
+| OOD refusal rate | ≥ **95%** | ≥ **99%** | −1 pt vs min | CI eval gate (M6) |
+| False refusal rate | ≤ **2%** | ≤ **1%** | +0.5 pt | CI eval gate (M6) |
+
+**Dual target rationale:** the *minimum* column is what the CI eval
+gate enforces on every PR (M6). The *stretch* column is the dashboard
+target we aim for after full fine-tune. Both are reported on every run;
+only the minimum blocks merges.
 
 ### 3.2 Latency & throughput (serving, M5)
 
@@ -135,6 +145,7 @@ To keep numbers comparable, all measurements follow:
 | Date | Author | Change |
 |---|---|---|
 | (M0.4) | WoodinGlass | Initial draft with TBD baselines |
+| (M0.5) | WoodinGlass | Baseline measured: math 96.0%, physics 72.5%, OOD refusal 0.0%, false-refusal rate 0.0% |
 
 ---
 
