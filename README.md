@@ -13,6 +13,22 @@ A reference implementation of a **production-grade LLM pipeline**: QLoRA fine-tu
 
 ---
 
+## Problem (one sentence)
+
+Teams need a **reproducible, testable, and observable LLM lifecycle** — from raw data → QLoRA fine-tune → statistical eval → guarded serving → drift-aware retraining.
+
+## What this is / is not
+
+| This is | This is not |
+|---|---|
+| End-to-end LLM lifecycle (data → train → eval → serve → retrain) | A notebook dump or a single fine-tune script |
+| Production serving (vLLM + FastAPI + guardrails) | A chatbot UI |
+| Statistical eval with bootstrap CI + calibrated LLM-judge | Vibes-based "it looks better" |
+| Portfolio-grade with CI, tests, Docker, observability | Production SaaS with billing / SLA |
+| Reproducible via `git SHA + data hash + config hash` | Non-reproducible seed-of-the-day training |
+
+---
+
 ## Table of Contents
 
 - [Why this project](#why-this-project)
