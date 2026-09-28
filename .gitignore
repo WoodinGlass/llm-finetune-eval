@@ -1,0 +1,58 @@
+# ── secrets ────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ── python ─────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# ── build ──────────────────────────────────────────
+dist/
+build/
+.terraform/
+*.tfstate*
+*.tfvars
+
+# ── data (DVC-tracked) ─────────────────────────────
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+*.sqlite
+*.parquet
+*.png
+!docs/preview/*.png
+
+# ── models & checkpoints ───────────────────────────
+checkpoints/
+models/
+artifacts/
+*.safetensors
+*.bin
+
+# ── logs & runs ────────────────────────────────────
+logs/
+runs/
+wandb/
+mlruns/
+*.log
+
+# ── notebooks ──────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── OS / IDE ───────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
