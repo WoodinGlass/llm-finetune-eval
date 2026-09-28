@@ -1,7 +1,0 @@
-mkdir -p data/raw data/processed \
-         training eval configs experiments \
-         serving deploy monitoring registry \
-         tests/unit tests/data tests/smoke tests/load \
-         docs/adr docs/runbook docs/cards \
-         .github/workflows
-touch data/raw/.gitkeep data/processed/.gitkeep
