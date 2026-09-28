@@ -1,0 +1,52 @@
+# ── vcs ────────────────────────────────────────────────────────
+.git
+.gitignore
+.gitattributes
+
+# ── python caches ──────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# ── notebooks ──────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── secrets ────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ── data / model artifacts (DVC-tracked, mounted at runtime) ───
+data/
+checkpoints/
+models/
+artifacts/
+logs/
+runs/
+wandb/
+mlruns/
+*.sqlite
+*.parquet
+
+# ── non-runtime dirs ───────────────────────────────────────────
+tests/
+docs/
+experiments/
+monitoring/
+deploy/
+registry/
+.github/
+
+# ── editor / OS ────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
