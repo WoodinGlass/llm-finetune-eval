@@ -378,16 +378,16 @@ Status legend: `[todo]` not started · `[wip]` in progress · `[done]` accepted.
 - [x] `.gitignore`, `LICENSE` (MIT), `.env.example`, `CHANGELOG.md`, `README.md`
 - [x] **Exit criteria:** `make setup` runs on a clean machine; `make eval-baseline` reproduces committed baseline scores ± tolerance
 
-### M1 — Data pipeline [todo]
+### M1 — Data pipeline [done]
 
-- [ ] Pandera schema for train/eval records (required fields, dtypes, ranges)
-- [ ] MinHash + LSH dedup (near-duplicate removal, threshold documented)
-- [ ] PII scrub: Presidio + regex emails
-- [ ] License audit per source dataset; recorded in `docs/cards/data.md`
-- [ ] Train-vs-test decontamination (13-gram overlap check)
-- [ ] Frozen test set: `data/processed/test.lock` with content hash
-- [ ] DVC pipeline (`dvc.yaml`): raw → clean → dedup → split → frozen
-- [ ] `docs/cards/data.md` (provenance, size, dedup ratio, PII stats, known biases)
+- [x] Pandera schema for train/eval records (required fields, dtypes, ranges)
+- [x] MinHash + LSH dedup (threshold 0.85, 5-word shingles, num_perm=128)
+- [x] PII scrub: Presidio NER + domain-aware regex
+- [x] License audit per source dataset; recorded in `docs/cards/data.md`
+- [x] Train-vs-test decontamination (13-gram overlap check)
+- [x] Frozen test set: `data/processed/test.lock` with SHA256
+- [x] DVC tracking: `data/{raw,processed}/*.dvc` pointers + Drive remote
+- [x] `docs/cards/data.md` (provenance, size, dedup ratio, PII stats, known biases)
 - [ ] **Exit criteria:** `make test-data` green; `dvc.lock` records data hashes; test set locked and reproducible
 
 ### M2 — Training [todo]

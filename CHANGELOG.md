@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — M1 (Data pipeline)
+
+- Pandera schema (`src/llm_ft/schema.py`) with domain-specific cross-checks
+- MinHash LSH deduplication (threshold 0.85, 5-word shingles)
+- Domain-aware PII scrub: Presidio NER + regex; math/physics preserved
+- 13-gram train-vs-test decontamination (GPT-3 / Llama style)
+- DVC tracking for raw + processed data (`.dvc` pointers, Drive remote)
+- Data card (`docs/cards/data.md`) with provenance, composition, biases
+- 4,000 raw training samples -> 3,935 after cleaning
+  - math 1800, physics 1735 (64 decontaminated), ood 320, adversarial_ood 80
+- 27 unit tests for `clean.py` + 11 for `decontaminate.py`
+
 ### Added
 
 - Initial repository skeleton (M0.1)
