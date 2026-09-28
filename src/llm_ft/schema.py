@@ -34,7 +34,7 @@ class RecordSchema(pa.DataFrameModel):
     id: Series[str] = pa.Field(
         nullable=False,
         unique=True,
-        str_matches=r"^[a-z0-9][a-z0-9\-]{2,63}$",
+        str_matches=r"^[a-z0-9][a-z0-9_\-]{2,63}$",
         description="Stable, unique, filesystem-safe identifier.",
     )
     domain: Series[str] = pa.Field(
