@@ -1,0 +1,29 @@
+# @package _global_
+
+defaults:
+  - qlora_base
+  - _self_
+
+run:
+  name: "m2-smoke"
+  output_dir: "${oc.env:LLM_FT_CHECKPOINT_DIR,/content/drive/MyDrive/llm-ft/checkpoints}/m2-smoke"
+  mlflow_dir: "${oc.env:LLM_FT_MLFLOW_DIR,/content/drive/MyDrive/llm-ft/mlruns}"
+  tags: ["m2", "smoke"]
+  notes: "smoke test: 100 samples, 1 epoch"
+
+model:
+  max_seq_length: 512
+  lora:
+    r: 8
+    lora_alpha: 16
+
+data:
+  max_samples: 100
+  require_all_domains: true
+
+training:
+  num_train_epochs: 1
+  gradient_accumulation_steps: 4
+  save_steps: 50
+  logging_steps: 5
+  report_to: ["wandb"]

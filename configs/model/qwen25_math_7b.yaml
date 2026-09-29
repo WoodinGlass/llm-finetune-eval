@@ -1,0 +1,33 @@
+# @package model
+
+name_or_path: "Qwen/Qwen2.5-Math-7B-Instruct"
+revision: "main"
+trust_remote_code: true
+
+# --- 4-bit quantization (QLoRA) ---
+# P100 / T4 do NOT support bf16 → use fp16 compute.
+load_in_4bit: true
+bnb_4bit_quant_type: "nf4"
+bnb_4bit_compute_dtype: "float16"
+bnb_4bit_use_double_quant: true
+
+# --- tokenizer / sequence ---
+max_seq_length: 2048
+padding_side: "right"
+truncation_side: "right"
+
+# --- LoRA adapter (all linear projections) ---
+lora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  bias: "none"
+  task_type: "CAUSAL_LM"
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj

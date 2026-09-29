@@ -1,0 +1,14 @@
+# Root Hydra config. Compose: model + data + train/{mode}.
+#   python training/train.py --config-name=config +train=qlora_base
+#   python training/train.py --config-name=config +train=smoke
+defaults:
+  - model: qwen25_math_7b
+  - data: default
+  - _self_
+
+run:
+  name: "unset"
+  project: "llm-finetune-eval"
+  seed: 42
+  tags: []
+  notes: ""
