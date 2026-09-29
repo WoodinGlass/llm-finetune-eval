@@ -388,7 +388,7 @@ Status legend: `[todo]` not started · `[wip]` in progress · `[done]` accepted.
 - [x] Frozen test set: `data/processed/test.lock` with SHA256
 - [x] DVC tracking: `data/{raw,processed}/*.dvc` pointers + Drive remote
 - [x] `docs/cards/data.md` (provenance, size, dedup ratio, PII stats, known biases)
-- [ ] **Exit criteria:** `make test-data` green; `dvc.lock` records data hashes; test set locked and reproducible
+- [x] **Exit criteria:** `make test-data` green; `dvc.lock` records data hashes; test set locked and reproducible
 
 ### M2 — Training [todo]
 
@@ -408,6 +408,7 @@ Status legend: `[todo]` not started · `[wip]` in progress · `[done]` accepted.
 - [ ] Red-team / safety set (jailbreak, PII leak, off-topic refusal)
 - [ ] Bootstrap CI (1000 resamples, 95%) + multi-seed variance
 - [ ] Error analysis report (top-20 failures, categorized)
+- [ ] Eval: confidence × correctness, error category heatmap
 - [ ] **Exit criteria:** `make eval-report` produces a report that answers: *is the new model genuinely better without breaking anything else?*
 
 ### M4 — Packaging & registry [todo]
@@ -417,6 +418,7 @@ Status legend: `[todo]` not started · `[wip]` in progress · `[done]` accepted.
 - [ ] Push to HF Hub / MLflow Registry with semver tag
 - [ ] Model card (`docs/cards/model.md`): training data, eval results, limitations, intended use
 - [ ] SHA256 checksums stored alongside artifact
+- [ ] Packaging: quantization × domain tradeoff
 - [ ] **Exit criteria:** one immutable artifact promoted to `staging` with verifiable hash
 
 ### M5 — Serving & guardrails [todo]
@@ -426,6 +428,7 @@ Status legend: `[todo]` not started · `[wip]` in progress · `[done]` accepted.
 - [ ] Input guardrail: Llama Guard + regex blocklist
 - [ ] Output guardrail: PII redaction, toxicity check
 - [ ] Load test (Locust / k6): p50/p95/p99, TTFT, tokens/s, cost per 1M tokens
+- [ ] Serving: cost × latency contour, throughput heatmap
 - [ ] **Exit criteria:** SLO from M0 met under target load; `tests/load/` reproducible
 
 ### M6 — CI/CD & quality gate [todo]
@@ -456,6 +459,7 @@ Status legend: `[todo]` not started · `[wip]` in progress · `[done]` accepted.
 - [ ] Drift detection (Evidently) on input distribution + output length + refusal rate
 - [ ] Alerts: p95 > 2× SLO, error > 2%, quality drop > 5 pts/h, GPU mem > 95%
 - [ ] 👍 / 👎 feedback capture endpoint
+- [ ] drift: input density 2D KDE, embedding t-SNE KDE
 - [ ] **Exit criteria:** alert fires on simulated latency spike and quality drop
 
 ### M9 — Retraining loop [todo]
@@ -467,6 +471,7 @@ Status legend: `[todo]` not started · `[wip]` in progress · `[done]` accepted.
 - [ ] Manual approval gate → promote in registry
 - [ ] Full cycle reproducible via `make retrain-cycle`
 - [ ] `docs/runbook/retrain.md`
+- [ ] Retraining: cycle × metric improvement
 - [ ] **Exit criteria:** one full cycle runs end-to-end
 
 ### M10 — Docs & production readiness review [todo]
