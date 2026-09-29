@@ -87,6 +87,7 @@ def build_callbacks(cfg: DictConfig):
 def build_sft_kwargs(cfg: DictConfig, out_dir: Path, seed: int, report_to: list) -> dict:
     """Build SFTConfig kwargs as a literal dict (ruff C408 friendly)."""
     kwargs = {
+        "loss_type": "nll",  # bypass TRL chunked_nll bug with PEFT
         "output_dir": str(out_dir),
         "num_train_epochs": float(cfg.training.num_train_epochs),
         "per_device_train_batch_size": int(cfg.training.per_device_train_batch_size),
@@ -110,7 +111,7 @@ def build_sft_kwargs(cfg: DictConfig, out_dir: Path, seed: int, report_to: list)
         "seed": seed,
         "data_seed": int(cfg.training.data_seed),
         "dataset_text_field": "text",
-        "max_seq_length": int(cfg.model.max_seq_length),
+        "max_length": int(cfg.model.max_seq_length),
         "packing": False,
         "run_name": str(cfg.run.name),
     }
@@ -136,6 +137,64 @@ def main(cfg: DictConfig) -> int:
     tokenizer = load_tokenizer(cfg)
     model = load_model(cfg)
     model = prepare_model(model, cfg)
+
+    # ── QLoRA precision cast (T4 / fp16 GradScaler) ──
+    # Qwen2.5-Math declares torch_dtype=bfloat16 in config.json, so PEFT
+    # creates LoRA adapters in bf16. torch's fp16 GradScaler has no bf16
+    # unscale kernel -> NotImplementedError at first clip_grad_norm_.
+    # Standard recipe: trainable -> fp32, non-trainable buffers -> fp16.
+    import torch as _torch
+    _n_cast = 0
+    for _p in model.parameters():
+        if _p.dtype == _torch.bfloat16:
+            _p.data = _p.data.to(_torch.float32 if _p.requires_grad else _torch.float16)
+            _n_cast += 1
+    for _b in model.buffers():
+        if _b.dtype == _torch.bfloat16:
+            _b.data = _b.data.to(_torch.float16)
+            _n_cast += 1
+    log.info("cast %d bf16 tensors (trainable->fp32, rest->fp16)", _n_cast)
+
+    # Extra safety: paksa seluruh model ke fp16/fp32, tidak ada bf16
+    _bf16_left = sum(1 for _p in model.parameters() if _p.dtype == _torch.bfloat16)
+    _bf16_left += sum(1 for _b in model.buffers() if _b.dtype == _torch.bfloat16)
+    if _bf16_left > 0:
+        log.warning("still %d bf16 tensors — forcing fp16", _bf16_left)
+        for _p in model.parameters():
+            if _p.dtype == _torch.bfloat16:
+                _p.data = _p.data.to(_torch.float32 if _p.requires_grad else _torch.float16)
+        for _b in model.buffers():
+            if _b.dtype == _torch.bfloat16:
+                _b.data = _b.data.to(_torch.float16)
+
+    # Extra safety: paksa seluruh model ke fp16/fp32, tidak ada bf16
+    _bf16_left = sum(1 for _p in model.parameters() if _p.dtype == _torch.bfloat16)
+    _bf16_left += sum(1 for _b in model.buffers() if _b.dtype == _torch.bfloat16)
+    if _bf16_left > 0:
+        log.warning("still %d bf16 tensors — forcing fp16", _bf16_left)
+        for _p in model.parameters():
+            if _p.dtype == _torch.bfloat16:
+                _p.data = _p.data.to(_torch.float32 if _p.requires_grad else _torch.float16)
+        for _b in model.buffers():
+            if _b.dtype == _torch.bfloat16:
+                _b.data = _b.data.to(_torch.float16)
+
+    # ── QLoRA precision cast (T4 / fp16 GradScaler) ──
+    # Qwen2.5-Math declares torch_dtype=bfloat16 in config.json, so PEFT
+    # creates LoRA adapters in bf16. torch's fp16 GradScaler has no bf16
+    # unscale kernel -> NotImplementedError at first clip_grad_norm_.
+    # Standard recipe: trainable -> fp32, non-trainable buffers -> fp16.
+    import torch as _torch
+    _n_cast = 0
+    for _p in model.parameters():
+        if _p.dtype == _torch.bfloat16:
+            _p.data = _p.data.to(_torch.float32 if _p.requires_grad else _torch.float16)
+            _n_cast += 1
+    for _b in model.buffers():
+        if _b.dtype == _torch.bfloat16:
+            _b.data = _b.data.to(_torch.float16)
+            _n_cast += 1
+    log.info("cast %d bf16 tensors (trainable->fp32, rest->fp16)", _n_cast)
 
     # 2. dataset
     log.info("loading train records ...")
@@ -173,7 +232,7 @@ def main(cfg: DictConfig) -> int:
         model=model,
         args=sft_config,
         train_dataset=hf_ds,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         callbacks=build_callbacks(cfg),
     )
 

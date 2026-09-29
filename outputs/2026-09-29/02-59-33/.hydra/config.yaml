@@ -1,0 +1,88 @@
+model:
+  name_or_path: Qwen/Qwen2.5-Math-7B-Instruct
+  revision: main
+  trust_remote_code: true
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_compute_dtype: float16
+  bnb_4bit_use_double_quant: true
+  max_seq_length: 512
+  padding_side: right
+  truncation_side: right
+  lora:
+    r: 8
+    lora_alpha: 16
+    lora_dropout: 0.05
+    bias: none
+    task_type: CAUSAL_LM
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+data:
+  train_dir: data/processed/train
+  test_dir: data/processed/test
+  train_files:
+    math: data/processed/train/math_train.jsonl
+    physics: data/processed/train/physics_train.jsonl
+    ood: data/processed/train/ood_train.jsonl
+    adversarial_ood: data/processed/train/adversarial_ood_train.jsonl
+  max_samples: 100
+  require_all_domains: true
+  shuffle_seed: 42
+  field_id: id
+  field_domain: domain
+  field_prompt: prompt
+  field_answer: answer
+  field_reasoning: reasoning
+  system_prompts:
+    math: Please reason step by step, and put your final answer within \boxed{}.
+    physics: You are a physics expert. Read the multiple-choice question carefully.
+      Reason step by step if needed, then output your final answer as a single capital
+      letter (A, B, C, or D) inside \boxed{}, e.g. \boxed{A}. Do not include any other
+      text after the boxed answer.
+    ood: null
+    adversarial_ood: null
+run:
+  name: m2-smoke
+  project: llm-finetune-eval
+  seed: 42
+  tags:
+  - m2
+  - smoke
+  notes: 'smoke test: 100 samples, 1 epoch'
+  output_dir: ${oc.env:LLM_FT_CHECKPOINT_DIR,/content/drive/MyDrive/llm-ft/checkpoints}/m2-smoke
+  mlflow_dir: ${oc.env:LLM_FT_MLFLOW_DIR,/content/drive/MyDrive/llm-ft/mlruns}
+training:
+  num_train_epochs: 1
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 4
+  learning_rate: 0.0001
+  lr_scheduler_type: cosine
+  warmup_steps: 100
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  optim: paged_adamw_32bit
+  fp16: false
+  bf16: false
+  gradient_checkpointing: true
+  gradient_checkpointing_kwargs:
+    use_reentrant: false
+  logging_steps: 5
+  save_steps: 50
+  save_total_limit: 5
+  eval_strategy: 'no'
+  report_to:
+  - wandb
+  dataloader_num_workers: 2
+  remove_unused_columns: false
+  group_by_length: true
+  ddp_find_unused_parameters: false
+  seed: 42
+  data_seed: 42
+  save_safetensors: true
+  neftune_noise_alpha: null

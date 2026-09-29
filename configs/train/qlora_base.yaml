@@ -22,7 +22,7 @@ training:
   optim: "paged_adamw_32bit"
 
   # precision
-  fp16: true
+  fp16: false
   bf16: false
 
   # memory
