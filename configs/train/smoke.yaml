@@ -26,4 +26,4 @@ training:
   gradient_accumulation_steps: 4
   save_steps: 50
   logging_steps: 5
-  report_to: ["wandb"]
+  report_to: []

@@ -35,7 +35,7 @@ training:
   save_steps: 200
   save_total_limit: 5
   eval_strategy: "no"           # no separate eval set; full eval is M3
-  report_to: ["wandb", "mlflow"]
+  report_to: []
 
   # dataloader
   dataloader_num_workers: 2

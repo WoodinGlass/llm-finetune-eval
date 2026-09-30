@@ -1,0 +1,2 @@
+- +train=full
+- +training.resume_from_checkpoint=/kaggle/working/checkpoints/m2-full/checkpoint-400
