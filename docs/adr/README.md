@@ -8,6 +8,7 @@ Each ADR is immutable once accepted; superseding ADRs link to the old one.
 | 0002 | [Qwen2.5-Math-7B as base model, vLLM as serving engine](0002-model-and-serving-choice.md) | accepted | M0.4 |
 | 0003 | [DVC for data, Git for code, HF Hub for models](0003-storage-and-versioning.md) | accepted | M0.4 |
 | 0004 | [Three-layer eval with calibrated LLM-as-judge](0004-eval-methodology.md) | accepted | M0.4 |
+| 0006 | [FP32 training on T4 (fp16/bf16 disabled)](0006-fp32-training-on-t4.md) | accepted | M2.5 |
 
 ## Format
 
