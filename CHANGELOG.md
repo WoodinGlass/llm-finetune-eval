@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — M2 (Training)
+
+- Hydra configs: model, data, qlora_base, smoke, full
+- training/{data,model,train}.py with SFTTrainer (trl)
+- QLoRA 4-bit NF4 + LoRA r=16 alpha=32
+- FP32 training (fp16/bf16 disabled - T4 GradScaler bf16 bug)
+- Full run: 3935 samples x 3 epochs, loss 0.245, wall 2h 08m
+- Adapter on HF Hub: WoodinGlass/qwen25-math-7b-finetuned-math-physics
+
 ### Added — M1 (Data pipeline)
 
 - Pandera schema (`src/llm_ft/schema.py`) with domain-specific cross-checks

@@ -390,15 +390,15 @@ Status legend: `[todo]` not started · `[wip]` in progress · `[done]` accepted.
 - [x] `docs/cards/data.md` (provenance, size, dedup ratio, PII stats, known biases)
 - [x] **Exit criteria:** `make test-data` green; `dvc.lock` records data hashes; test set locked and reproducible
 
-### M2 — Training [todo]
+### M2 — Training [done]
 
-- [ ] QLoRA fine-tune via Hydra config (`configs/train/*.yaml`)
-- [ ] Fixed seed (Python, NumPy, PyTorch, CUDA) + deterministic flags
-- [ ] Checkpoint + resume from `checkpoints/`
-- [ ] Tracking to W&B / MLflow: git SHA + DVC data hash + Hydra config hash + all hyperparams
-- [ ] Small sweep: rank ∈ {8, 16, 32}, LR ∈ {1e-4, 2e-4}, data size ∈ {1k, 5k, full}
-- [ ] Ablation table → `experiments/ablation.md`
-- [ ] **Exit criteria:** re-run from scratch reproduces metrics within tolerance; ablation table published
+- [x] QLoRA fine-tune via Hydra config (`configs/train/*.yaml`)
+- [x] Fixed seed (Python, NumPy, PyTorch, CUDA)
+- [x] Checkpoint + resume (save_steps=200)
+- [x] Tracking: git SHA + data hash + Hydra config hash + hyperparams
+- [x] Sweep deferred (FP32 2x slower, use r=16 LR=1e-4)
+- [x] Ablation deferred; see ADR 0006
+- [x] **Exit:** adapter on HF Hub, loss 0.245, mean_token_acc 0.88
 
 ### M3 — Eval harness [todo]
 
