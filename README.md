@@ -382,7 +382,7 @@ Status legend: `[todo]` not started · `[wip]` in progress · `[done]` accepted.
 
 - [x] Pandera schema for train/eval records (required fields, dtypes, ranges)
 - [x] MinHash + LSH dedup (threshold 0.85, 5-word shingles, num_perm=128)
-- [x] PII scrub: Presidio NER + domain-aware regex
+- [x] PII scrub: domain-aware regex (Presidio NER deferred — spacy model gap on Kaggle/Colab, see `docs/limitations.md`)
 - [x] License audit per source dataset; recorded in `docs/cards/data.md`
 - [x] Train-vs-test decontamination (13-gram overlap check)
 - [x] Frozen test set: `data/processed/test.lock` with SHA256
@@ -390,15 +390,19 @@ Status legend: `[todo]` not started · `[wip]` in progress · `[done]` accepted.
 - [x] `docs/cards/data.md` (provenance, size, dedup ratio, PII stats, known biases)
 - [x] **Exit criteria:** `make test-data` green; `dvc.lock` records data hashes; test set locked and reproducible
 
-### M2 — Training [done]
+### M2 — Training [wip]
 
 - [x] QLoRA fine-tune via Hydra config (`configs/train/*.yaml`)
 - [x] Fixed seed (Python, NumPy, PyTorch, CUDA)
 - [x] Checkpoint + resume (save_steps=200)
 - [x] Tracking: git SHA + data hash + Hydra config hash + hyperparams
-- [x] Sweep deferred (FP32 2x slower, use r=16 LR=1e-4)
-- [x] Ablation deferred; see ADR 0006
-- [x] **Exit:** adapter on HF Hub, loss 0.245, mean_token_acc 0.88
+- [x] v1 training (LR 1e-4, r=16, 3 ep) — **failed eval gate** (math −23 pts, physics −28 pts, false-refusal +26 pts)
+- [x] v2 training (LR 2e-5, r=8, 2 ep) — **failed eval gate** (math −7 pts, OOD refusal regressed to 0)
+- [ ] v3 training (rank-1 MLP-only + RFT + ORPO) — *pending GPU*
+- [x] Sweep deferred (FP32 2× slower on T4) — see ADR 0006
+- [ ] **Exit:** adapter passes M3 eval gate (math ≥ baseline, physics ≥ +7.5 pts, OOD refusal ≥ 95%, FR ≤ 2%)
+
+> **Note:** v1 & v2 adapters on HF Hub are **failed experiments** — evidence of iteration, not production artifacts. Production artifact is gated on v3 passing the M3 eval gate.
 
 ### M3 — Eval harness [todo]
 
